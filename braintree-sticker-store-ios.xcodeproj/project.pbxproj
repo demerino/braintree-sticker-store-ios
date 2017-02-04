@@ -12,6 +12,7 @@
 		033A97931E454F860035AC07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033A97911E454F860035AC07 /* Main.storyboard */; };
 		033A97951E454F860035AC07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033A97941E454F860035AC07 /* Assets.xcassets */; };
 		033A97981E454F860035AC07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033A97961E454F860035AC07 /* LaunchScreen.storyboard */; };
+		AE8AF85A6D60CCEEF62BB1A4 /* Pods_braintree_sticker_store_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AADBF974E38AE51CB0F65C /* Pods_braintree_sticker_store_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		033A97941E454F860035AC07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		033A97971E454F860035AC07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		033A97991E454F860035AC07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73AADBF974E38AE51CB0F65C /* Pods_braintree_sticker_store_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_braintree_sticker_store_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9149743460EB4B97C67B203 /* Pods-braintree-sticker-store-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-braintree-sticker-store-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-braintree-sticker-store-ios/Pods-braintree-sticker-store-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		EC83BB94F0E4B8A622A37071 /* Pods-braintree-sticker-store-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-braintree-sticker-store-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-braintree-sticker-store-ios/Pods-braintree-sticker-store-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8AF85A6D60CCEEF62BB1A4 /* Pods_braintree_sticker_store_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				033A978C1E454F850035AC07 /* braintree-sticker-store-ios */,
 				033A978B1E454F850035AC07 /* Products */,
+				F64ABB4349C3F04D619C9915 /* Pods */,
+				9B54FAF58FEAD7FD39DE6018 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = "braintree-sticker-store-ios";
 			sourceTree = "<group>";
 		};
+		9B54FAF58FEAD7FD39DE6018 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73AADBF974E38AE51CB0F65C /* Pods_braintree_sticker_store_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F64ABB4349C3F04D619C9915 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9149743460EB4B97C67B203 /* Pods-braintree-sticker-store-ios.debug.xcconfig */,
+				EC83BB94F0E4B8A622A37071 /* Pods-braintree-sticker-store-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 033A979C1E454F860035AC07 /* Build configuration list for PBXNativeTarget "braintree-sticker-store-ios" */;
 			buildPhases = (
+				0CB34615049F9899C5CC5171 /* [CP] Check Pods Manifest.lock */,
 				033A97861E454F850035AC07 /* Sources */,
 				033A97871E454F850035AC07 /* Frameworks */,
 				033A97881E454F850035AC07 /* Resources */,
+				10BA3F2072DB31DBF2E755A4 /* [CP] Embed Pods Frameworks */,
+				2664F3FD208E6C4C9CF4132E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0CB34615049F9899C5CC5171 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		10BA3F2072DB31DBF2E755A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-braintree-sticker-store-ios/Pods-braintree-sticker-store-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2664F3FD208E6C4C9CF4132E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-braintree-sticker-store-ios/Pods-braintree-sticker-store-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		033A97861E454F850035AC07 /* Sources */ = {
@@ -259,10 +334,12 @@
 		};
 		033A979D1E454F860035AC07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9149743460EB4B97C67B203 /* Pods-braintree-sticker-store-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 43253H4X22;
 				INFOPLIST_FILE = "braintree-sticker-store-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.braintreepayments.braintree-sticker-store-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,10 +349,12 @@
 		};
 		033A979E1E454F860035AC07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC83BB94F0E4B8A622A37071 /* Pods-braintree-sticker-store-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 43253H4X22;
 				INFOPLIST_FILE = "braintree-sticker-store-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.braintreepayments.braintree-sticker-store-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,6 +381,7 @@
 				033A979E1E454F860035AC07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

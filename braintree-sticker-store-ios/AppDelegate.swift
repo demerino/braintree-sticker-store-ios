@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  braintree-sticker-store-ios
-//
-//  Created by Merino, David on 2/3/17.
-//  Copyright © 2017 Braintree. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
