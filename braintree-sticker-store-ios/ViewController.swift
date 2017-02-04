@@ -22,18 +22,19 @@ class ViewController: UIViewController {
         checkoutStackView.addArrangedSubview(itemDetailsStackView)
         itemDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
         itemDetailsStackView.axis  = .horizontal
+        itemDetailsStackView.spacing = 20
         
-        let itemImage = UIImageView(image: UIImage(named: ""))
+        let itemImage = UIImageView(image: UIImage(named: "rocket-sticker"))
         itemImage.translatesAutoresizingMaskIntoConstraints = false
-        itemImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        itemImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        itemImage.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        itemImage.heightAnchor.constraint(equalToConstant: 80).isActive = true
         itemDetailsStackView.addArrangedSubview(itemImage)
         
         let itemInfo = UILabel()
         itemInfo.numberOfLines = 0
         itemInfo.translatesAutoresizingMaskIntoConstraints = false
         itemInfo.textColor = UIColor.black
-        itemInfo.text = "Rocket Sticker\n$1000"
+        itemInfo.text = "Rocket Sticker\n$10.00"
         itemDetailsStackView.addArrangedSubview(itemInfo)
         
         self.selectPaymentMethodButton.translatesAutoresizingMaskIntoConstraints = true
@@ -48,6 +49,13 @@ class ViewController: UIViewController {
         self.alert(message: "Select Payment Method")
     }
     
+    func alert(message: String, title: String = "") {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     func createTransaction(params: Dictionary<String, Any>) {
         Alamofire.request("http://localhost:3000/payments/checkout", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
             if let JSON = response.result.value {
@@ -56,13 +64,6 @@ class ViewController: UIViewController {
                 self.alert(message: "FAILURE")
             }
         }
-    }
-    
-    func alert(message: String, title: String = "") {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(OKAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 
