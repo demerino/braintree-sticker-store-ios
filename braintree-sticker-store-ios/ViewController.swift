@@ -1,11 +1,14 @@
 import UIKit
 import Alamofire
+import BraintreeDropIn
+import Braintree
 
 class ViewController: UIViewController {
     
     let checkoutStackView = UIStackView()
-    let selectPaymentMethodButton = UIButton(type: .roundedRect)
-
+    let payButton = UIButton(type: .roundedRect)
+    var paymentMethod : BTPaymentMethodNonce?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Checkout"
@@ -37,16 +40,59 @@ class ViewController: UIViewController {
         itemInfo.text = "Rocket Sticker\n$10.00"
         itemDetailsStackView.addArrangedSubview(itemInfo)
         
-        self.selectPaymentMethodButton.translatesAutoresizingMaskIntoConstraints = true
-        self.selectPaymentMethodButton.addTarget(self, action: #selector(selectPaymentMethodAction), for: .touchUpInside)
-        self.selectPaymentMethodButton.setTitle("Select Payment Method", for: .normal)
-        self.selectPaymentMethodButton.setTitleColor(UIColor.white, for: .normal)
-        self.selectPaymentMethodButton.backgroundColor = UIColor.blue
-        self.checkoutStackView.addArrangedSubview(self.selectPaymentMethodButton)
+        self.payButton.translatesAutoresizingMaskIntoConstraints = true
+        self.payButton.addTarget(self, action: #selector(selectPaymentMethodAction), for: .touchUpInside)
+        self.payButton.setTitle("Select Payment Method", for: .normal)
+        self.payButton.setTitleColor(UIColor.white, for: .normal)
+        self.payButton.backgroundColor = UIColor.blue
+        self.checkoutStackView.addArrangedSubview(self.payButton)
     }
     
     func selectPaymentMethodAction() {
-        self.alert(message: "Select Payment Method")
+        guard let paymentMethodNonce = self.paymentMethod?.nonce else {
+            showDropIn(clientTokenOrTokenizationKey: "YOUR_AUTHORIZATION_KEY_HERE")
+            return
+        }
+        createTransaction(params: ["payment_method_nonce" : paymentMethodNonce])
+    }
+    
+    func showDropIn(clientTokenOrTokenizationKey: String) {
+        let request =  BTDropInRequest()
+        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
+        { (controller, result, error) in
+            if (error != nil) {
+                print("ERROR")
+            } else if (result?.isCancelled == true) {
+                print("CANCELLED")
+            } else if let result = result {
+                // Use the BTDropInResult properties to update your UI
+                self.paymentMethod = result.paymentMethod
+                let selectedPaymentMethodIcon = result.paymentIcon
+                let selectedPaymentMethodDescription = result.paymentDescription
+                
+                let paymentMethodStackView = UIStackView()
+                self.checkoutStackView.insertArrangedSubview(paymentMethodStackView, at: self.checkoutStackView.arrangedSubviews.count-1)
+                paymentMethodStackView.translatesAutoresizingMaskIntoConstraints = false
+                paymentMethodStackView.axis  = .horizontal
+                paymentMethodStackView.spacing = 20
+                
+                selectedPaymentMethodIcon.widthAnchor.constraint(equalToConstant: 45).isActive = true
+                selectedPaymentMethodIcon.heightAnchor.constraint(equalToConstant: 29).isActive = true
+                paymentMethodStackView.addArrangedSubview(selectedPaymentMethodIcon)
+                
+                let selectedPaymentMethodText = UILabel()
+                selectedPaymentMethodText.numberOfLines = 0
+                selectedPaymentMethodText.translatesAutoresizingMaskIntoConstraints = false
+                selectedPaymentMethodText.textColor = UIColor.black
+                selectedPaymentMethodText.text = selectedPaymentMethodDescription
+                paymentMethodStackView.addArrangedSubview(selectedPaymentMethodText)
+                
+                self.payButton.setTitle("Buy Now", for: .normal)
+                self.payButton.backgroundColor = UIColor.purple
+            }
+            controller.dismiss(animated: true, completion: nil)
+        }
+        self.present(dropIn!, animated: true, completion: nil)
     }
     
     func alert(message: String, title: String = "") {

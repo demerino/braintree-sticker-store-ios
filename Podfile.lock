@@ -1,12 +1,29 @@
 PODS:
   - Alamofire (4.3.0)
+  - Braintree/Card (4.7.4):
+    - Braintree/Core
+  - Braintree/Core (4.7.4)
+  - Braintree/UnionPay (4.7.4):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (5.1.0):
+    - BraintreeDropIn/DropIn (= 5.1.0)
+  - BraintreeDropIn/DropIn (5.1.0):
+    - Braintree/Card (~> 4.0)
+    - Braintree/Core (~> 4.0)
+    - Braintree/UnionPay (~> 4.0)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (5.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - BraintreeDropIn
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Braintree: 85b7f6300aa5238df972b32ea58adc405c8ebfdc
+  BraintreeDropIn: ad8e18bd4f3a33105b7bcd418556988ef68272bc
 
-PODFILE CHECKSUM: b388b270e1104f9d22fd6f1550a2115a6a16a13c
+PODFILE CHECKSUM: de8b1bcaeb126cb86aa3576b0b86245ed1b37b2a
 
 COCOAPODS: 1.1.1
